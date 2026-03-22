@@ -1,0 +1,32 @@
+groups:
+  - name: github-follower-bot-prod
+    rules:
+      - alert: GithubFollowerBotHighErrorRateProd
+        expr: rate(github_api_requests_total{status=~"5.."}[5m]) > 0.1
+        for: 5m
+        labels:
+          severity: critical
+          environment: prod
+        annotations:
+          summary: "[prod] GitHub API 5xx rate elevated"
+          description: "Error rate over 0.1 req/s in the last 5m. Production requires immediate action."
+
+      - alert: GithubFollowerBotNoProgressProd
+        expr: increase(follow_attempts_total{status="success"}[20m]) == 0
+        for: 20m
+        labels:
+          severity: critical
+          environment: prod
+        annotations:
+          summary: "[prod] No successful follows in 20 minutes"
+          description: "Potential runtime incident: stalled workers, auth regression, or severe throttling."
+
+      - alert: GithubFollowerBotLowRateLimitProd
+        expr: rate_limit_remaining < 150
+        for: 5m
+        labels:
+          severity: warning
+          environment: prod
+        annotations:
+          summary: "[prod] GitHub rate limit running low"
+          description: "Rate limit under 150 remaining requests; enforce backoff and reduce scheduler pressure."

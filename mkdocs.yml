@@ -1,0 +1,104 @@
+site_name: GitHub Follower and Fork Bot Documentation
+site_description: Live operational and technical documentation
+site_url: https://<your-org-or-user>.github.io/GitHub_Follower_and_Fork_Bot_Automated-main/
+repo_url: https://github.com/<your-org-or-user>/GitHub_Follower_and_Fork_Bot_Automated-main
+repo_name: GitHub_Follower_and_Fork_Bot_Automated-main
+
+plugins:
+  - search
+  - i18n:
+      docs_structure: suffix
+      fallback_to_default: true
+      reconfigure_material: true
+      languages:
+        - locale: es
+          name: Español
+          default: true
+          build: true
+        - locale: en
+          name: English
+          build: true
+        - locale: fr
+          name: Français
+          build: true
+        - locale: he
+          name: עברית
+          build: true
+        - locale: ru
+          name: Русский
+          build: true
+        - locale: zh
+          name: 中文
+          build: true
+
+theme:
+  name: material
+  language: es
+  features:
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - content.code.copy
+    - content.code.annotate
+    - search.suggest
+    - search.highlight
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: cyan
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: deep purple
+      accent: lime
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+extra_css:
+  - stylesheets/extra.css
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+      linenums: true
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.tabbed:
+      alternate_style: true
+
+nav:
+  - Home: index.md
+  - Getting Started:
+      - Installation: getting-started/installation.md
+      - Authentication: getting-started/authentication.md
+      - Quickstart: getting-started/quickstart.md
+      - MkDocs + GitHub Pages: getting-started/mkdocs-github-pages.md
+  - User Guide:
+      - Daily Operations: user-guide/daily-operations.md
+      - GUI Operations: user-guide/gui.md
+      - Exports: user-guide/exports.md
+      - Troubleshooting: user-guide/troubleshooting.md
+  - Technical:
+      - Architecture: technical/architecture.md
+      - Runtime Flow: technical/runtime-flow.md
+      - Persistence: technical/persistence.md
+      - Security Model: technical/security-model.md
+      - Observability: technical/observability.md
+      - Testing and Quality: technical/testing-quality.md
+  - Reference:
+      - CLI: reference/cli.md
+      - Env Vars: reference/env-vars.md
+  - Governance:
+      - Translation PR Rules: TRANSLATION_PR_RULES.md
+  - ADR:
+      - ADR-0001 Layered Boundaries: adr/0001-layered-module-boundaries.md
+  - Internal Audit:
+      - PR Contribution Plan: internal/pr-contribution-plan.md
+
+docs_dir: docs

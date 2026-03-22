@@ -1,0 +1,9 @@
+#include <tunables/global>
+
+profile github-follower-bot flags=(attach_disconnected,mediate_deleted) {
+  #include <abstractions/base>
+  network inet tcp,
+  deny /bin/** w,
+  deny /usr/** w,
+  /workspace/hostingfinal/other-projects/GitHub_Follower_and_Fork_Bot_Automated-main/** r,
+}

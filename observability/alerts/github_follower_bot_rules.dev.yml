@@ -1,0 +1,32 @@
+groups:
+  - name: github-follower-bot-dev
+    rules:
+      - alert: GithubFollowerBotHighErrorRateDev
+        expr: rate(github_api_requests_total{status=~"5.."}[5m]) > 0.35
+        for: 15m
+        labels:
+          severity: warning
+          environment: dev
+        annotations:
+          summary: "[dev] GitHub API 5xx rate elevated"
+          description: "Error rate over 0.35 req/s in the last 15m. Dev keeps looser threshold for exploratory runs."
+
+      - alert: GithubFollowerBotNoProgressDev
+        expr: increase(follow_attempts_total{status="success"}[45m]) == 0
+        for: 45m
+        labels:
+          severity: warning
+          environment: dev
+        annotations:
+          summary: "[dev] No successful follows in 45 minutes"
+          description: "Dev can be noisy; investigate only if test run was expected to make progress."
+
+      - alert: GithubFollowerBotLowRateLimitDev
+        expr: rate_limit_remaining < 75
+        for: 10m
+        labels:
+          severity: warning
+          environment: dev
+        annotations:
+          summary: "[dev] GitHub rate limit running low"
+          description: "Rate limit under 75 remaining requests; throttle or pause ad-hoc tests."

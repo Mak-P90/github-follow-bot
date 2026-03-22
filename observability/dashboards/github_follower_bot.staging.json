@@ -1,0 +1,13 @@
+{
+  "title": "GitHub Follower Bot - Staging",
+  "tags": ["github-follower-bot", "staging"],
+  "timezone": "browser",
+  "schemaVersion": 39,
+  "version": 1,
+  "panels": [
+    {"title": "Follow Success Rate", "type": "timeseries", "target_metric": "follow_attempts_total{status=\"success\",environment=\"staging\"}"},
+    {"title": "GitHub API 5xx Rate", "type": "timeseries", "target_metric": "rate(github_api_requests_total{status=~\"5..\",environment=\"staging\"}[5m])"},
+    {"title": "Queue Pending Jobs", "type": "timeseries", "target_metric": "follow_jobs_pending{environment=\"staging\"}"},
+    {"title": "Auth Failures", "type": "timeseries", "target_metric": "increase(security_events_total{event=\"auth_failure\",environment=\"staging\"}[15m])"}
+  ]
+}

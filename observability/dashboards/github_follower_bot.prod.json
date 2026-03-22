@@ -1,0 +1,14 @@
+{
+  "title": "GitHub Follower Bot - Prod",
+  "tags": ["github-follower-bot", "prod"],
+  "timezone": "utc",
+  "schemaVersion": 39,
+  "version": 1,
+  "panels": [
+    {"title": "Follow Success Rate", "type": "timeseries", "target_metric": "follow_attempts_total{status=\"success\",environment=\"prod\"}"},
+    {"title": "GitHub API 5xx Rate", "type": "timeseries", "target_metric": "rate(github_api_requests_total{status=~\"5..\",environment=\"prod\"}[5m])"},
+    {"title": "Queue Dead Letter Growth", "type": "timeseries", "target_metric": "increase(follow_jobs_dead_letter_total{environment=\"prod\"}[10m])"},
+    {"title": "Auth Failures", "type": "timeseries", "target_metric": "increase(security_events_total{event=\"auth_failure\",environment=\"prod\"}[10m])"},
+    {"title": "Rate Limit Remaining", "type": "timeseries", "target_metric": "rate_limit_remaining{environment=\"prod\"}"}
+  ]
+}

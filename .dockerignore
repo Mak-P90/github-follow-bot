@@ -1,0 +1,12 @@
+.env
+.git
+.gitignore
+__pycache__/
+.pytest_cache/
+*.pyc
+*.pyo
+*.db
+*.log
+DEV_files/
+pytests/
+docs/

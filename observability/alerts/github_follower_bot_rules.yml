@@ -1,0 +1,20 @@
+groups:
+  - name: github-follower-bot
+    rules:
+      - alert: GithubFollowerBotHighErrorRate
+        expr: rate(github_api_requests_total{status=~"5.."}[5m]) > 0.2
+        for: 10m
+        labels:
+          severity: warning
+        annotations:
+          summary: "GitHub API 5xx rate elevated"
+          description: "Error rate over 0.2 req/s in the last 10m."
+
+      - alert: GithubFollowerBotNoProgress
+        expr: increase(follow_attempts_total{status="success"}[30m]) == 0
+        for: 30m
+        labels:
+          severity: critical
+        annotations:
+          summary: "No successful follows in 30 minutes"
+          description: "Bot may be blocked by policy/rate limits or workers are stalled."

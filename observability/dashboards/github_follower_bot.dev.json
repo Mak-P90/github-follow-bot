@@ -1,0 +1,12 @@
+{
+  "title": "GitHub Follower Bot - Dev",
+  "tags": ["github-follower-bot", "dev"],
+  "timezone": "browser",
+  "schemaVersion": 39,
+  "version": 1,
+  "panels": [
+    {"title": "Follow Success Rate", "type": "timeseries", "target_metric": "follow_attempts_total{status=\"success\",environment=\"dev\"}"},
+    {"title": "GitHub API 5xx Rate", "type": "timeseries", "target_metric": "rate(github_api_requests_total{status=~\"5..\",environment=\"dev\"}[5m])"},
+    {"title": "Queue Pending Jobs", "type": "timeseries", "target_metric": "follow_jobs_pending{environment=\"dev\"}"}
+  ]
+}

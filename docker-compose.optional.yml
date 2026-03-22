@@ -1,0 +1,24 @@
+name: github-follower-bot
+
+services:
+  bot:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: github-follower-bot:local
+    # Optional env file for local runs (do not commit real secrets).
+    env_file:
+      - .env
+    environment:
+      BOT_DB_PATH: /data/bot_state.db
+    volumes:
+      - bot_data:/data
+    read_only: true
+    tmpfs:
+      - /tmp
+    security_opt:
+      - no-new-privileges:true
+    command: ["doctor"]
+
+volumes:
+  bot_data:
