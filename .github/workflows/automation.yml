@@ -40,7 +40,7 @@ jobs:
         run: python bot.py check-file-hardening
 
       - name: Run enterprise verification gate
-        run: ./scripts/enterprise_verify.sh
+        run: bash ./scripts/enterprise_verify.sh
 
       - name: Build recurring closure evidence bundle
         run: |
